@@ -32,7 +32,6 @@ jobs:
       - name: Commit the koi if it changed
         shell: bash
         run: |
-          git pull --quiet --rebase || true
           git add koi/koi.gif
           if git diff --cached --quiet; then
             echo "The koi is unchanged; nothing to commit."
@@ -41,4 +40,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit --quiet --message "koi: draw the day's koi"
+          git pull --quiet --rebase
           git push --quiet

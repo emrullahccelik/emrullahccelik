@@ -28,7 +28,6 @@ jobs:
       - run: python3 scripts/recolor_bonsai.py output/bonsai.gif output/bonsai-growth.gif
       - name: Commit the bonsai if it changed
         run: |
-          git pull --quiet --rebase || true
           git add output
           if git diff --cached --quiet; then
             echo "The bonsai is unchanged; nothing to commit."
@@ -37,4 +36,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit --quiet --message "chore: tend the bonsai 🌳"
+          git pull --quiet --rebase
           git push --quiet
